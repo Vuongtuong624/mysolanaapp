@@ -1,0 +1,190 @@
+/* ================================================================
+   AI Agents / SeekerClaw – mặt sau flip
+   ================================================================ */
+
+/* ------------------------------------------------------------------
+   1. Reset hero-inner về flex đơn giản (override grid từ style.css)
+   ------------------------------------------------------------------ */
+   .flip-face-back .hero-inner {
+    display: flex !important;
+    grid-template-columns: unset !important;
+    /* keep row so we can align card to the right but allow it to size responsively */
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0 8% 0 6%; /* increase right gutter so card shifts left slightly */
+    box-sizing: border-box;
+  }
+  
+  /* ------------------------------------------------------------------
+     2. Ambient glow đỏ
+     ------------------------------------------------------------------ */
+  .flip-face-back::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 50% at 80% 50%, rgba(220, 38, 38, 0.08) 0%, transparent 55%);
+    pointer-events: none;
+  }
+  
+  /* ------------------------------------------------------------------
+     3. hero-content – responsive card that fits screen
+     ------------------------------------------------------------------ */
+  .flip-face-back .hero-content {
+    /* Use relative positioning so card participates in layout and won't overflow */
+    position: relative !important;
+    display: block !important;
+    /* fluid width: at most 820px but never wider than viewport minus gutters */
+    width: min(820px, calc(100vw - 6rem));
+    max-width: 92vw;
+    padding: 28px 36px !important;
+    box-sizing: border-box !important;
+    margin: 0; /* keep alignment handled by parent */
+    margin-left: auto; /* push to the right side inside hero-inner */
+    margin-top: 16px; /* move card slightly down */
+  }
+
+  /* ensure glass ::before follows the card size */
+  .flip-face-back .hero-content::before {
+    border-radius: 20px;
+    inset: 0;
+  }
+
+  /* ------------------------------------------------------------------
+     4. Layout nội dung bên trong: hàng trên = text+badge+title+desc
+        hàng dưới hoặc cột phải = buttons
+     ------------------------------------------------------------------ */
+  .hero-content-ai-inner {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    height: auto;
+    min-height: 120px;
+    flex-wrap: nowrap;
+  }
+  
+  /* Text column: center content vertically and keep line breaks tidy */
+  .hero-content-ai-text {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* center badge/title/desc vertically */
+    gap: 12px;
+  }
+  
+  /* Badge */
+  .hero-badge {
+    display: inline-block;
+    margin: 0 0 12px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    color: #f97316;
+    text-transform: uppercase;
+  }
+  
+  /* Title */
+  .flip-face-back .hero-title {
+    font-size: clamp(1.8rem, 3vw, 2.6rem) !important;
+    line-height: 1.25 !important;
+    margin: 0 0 16px !important;
+    width: auto !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    letter-spacing: -0.02em;
+  }
+  
+  .hero-title-cyan {
+    color: #22d3ee;
+    display: block;
+  }
+  
+  /* Description */
+  .hero-desc {
+    margin: 0;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.78);
+    max-width: 480px;
+  }
+  
+  /* ------------------------------------------------------------------
+     5. Buttons block
+     ------------------------------------------------------------------ */
+  .hero-content-ai-actions {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  
+  .hero-buttons-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    width: 300px;
+    align-content: center; /* center grid content vertically */
+  }
+  
+  .hero-buttons-grid .btn {
+    margin: 0;
+    justify-content: center;
+    font-size: 0.92rem;
+    padding: 12px 16px;
+    white-space: nowrap;
+  }
+  
+  .btn-icon {
+    font-size: 0.95rem;
+    opacity: 0.85;
+    flex-shrink: 0;
+  }
+  .btn-icon-github { opacity: 0.65; }
+  
+  /* ------------------------------------------------------------------
+     6. Nút accent đỏ
+     ------------------------------------------------------------------ */
+  .btn-accent {
+    background: #dc2626 !important;
+    color: #fff !important;
+    border: none !important;
+  }
+  .btn-accent:hover {
+    filter: brightness(1.15);
+    transform: translateY(-1px);
+  }
+  
+  /* ------------------------------------------------------------------
+     7. Responsive
+     ------------------------------------------------------------------ */
+  @media (max-width: 900px) {
+    .flip-face-back .hero-inner { padding: 0 4%; }
+    .flip-face-back .hero-content {
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 auto !important;
+      padding: 24px !important;
+    }
+    .hero-content-ai-inner {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 18px;
+      min-height: auto;
+    }
+    .hero-content-ai-actions { width: 100%; }
+    .hero-buttons-grid { width: 100%; max-width: 100%; grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    .flip-face-back .hero-inner { padding: 0 3%; }
+    .flip-face-back .hero-content { padding: 18px !important; }
+    .hero-buttons-grid { grid-template-columns: 1fr; width: 100%; }
+    .flip-face-back .hero-title { font-size: 1.5rem !important; }
+  }

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solana App | The World's Solana Applications</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="ai-agents.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a href="#" class="logo">
+        <span class="logo-text">SOLANA</span>
+        <img src="image/download.png" alt="Solana" class="logo-icon" />
+        <span class="logo-text">APPS</span>
+      </a>
+      <nav class="nav">
+        <a href="#" class="nav-link" data-flip="back">Home</a>
+        <a href="#" class="nav-link">Applications</a>
+        <a href="#" class="nav-link nav-link-flip" data-flip="ai">AI Agents</a>
+        <a href="#" class="nav-link">Developers</a>
+        <a href="#" class="nav-link">Support</a>
+      </nav>
+      <div class="header-actions">
+        <a href="#" class="btn btn-outline">Contact Us</a>
+        <a href="#" class="btn btn-primary">Login</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="hero">
+    <div class="flip-wrapper">
+      <div class="flip-container" id="flip-container">
+        <!-- Mặt trước: trang chủ -->
+        <div class="flip-face flip-face-front">
+          <div class="hero-inner">
+            <div class="hero-content">
+              <h1 class="hero-title">Solana</h1>
+              <p class="hero-tagline">A new world—convenient and full of joy</p>
+              <div class="hero-buttons">
+                <a href="#" class="btn btn-outline">Learn More</a>
+                <a href="#" class="btn btn-outline btn-glow">
+                  Powered By SOLANA
+                  <span class="btn-arrow">→</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mặt sau: Introduction of SeekerClaw -->
+        <div class="flip-face flip-face-back">
+          <div class="hero-inner hero-inner-ai">
+            <div class="hero-content hero-content-ai">
+              <div class="hero-content-ai-inner">
+                <!-- Text column -->
+                <div class="hero-content-ai-text">
+                  <p class="hero-badge">BUILT FOR SOLANA SEEKER</p>
+                  <h1 class="hero-title">
+                    The AI Agent Layer <span class="hero-title-cyan">for Solana Seeker.</span>
+                  </h1>
+                  <p class="hero-desc">SeekerClaw turns your Seeker phone into an autonomous AI agent. Monitor your wallet, trade on Jupiter, get Telegram alerts, control your device — all running 24/7 on your phone. </p>
+                  <p>Testing: 89eJT9snDZjSuPhX5ZHG5ahJ9b5TbNDyVF8Nmhaspump</p>
+                </div>
+
+                <!-- Actions column -->
+                <div class="hero-content-ai-actions">
+                  <div class="hero-buttons-grid">
+                    <a href="#" class="btn btn-accent">
+                      <span class="btn-icon">↓</span>
+                      Get on dApp Store
+                    </a>
+                    <a href="#" class="btn btn-outline">
+                      <span class="btn-icon btn-icon-github">⌘</span>
+                      GitHub
+                    </a>
+                    <a href="#" class="btn btn-outline">
+                      <span class="btn-icon">↓</span>
+                      Download APK
+                    </a>
+                    <a href="#" class="btn btn-outline">
+                      <span class="btn-icon">⚙</span>
+                      Quick Setup
+                    </a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    (function() {
+      var container = document.getElementById('flip-container');
+      if (!container) return;
+      function setFlipped(flipped) {
+        container.classList.toggle('flipped', flipped);
+        document.body.classList.toggle('flip-bg-seekerclaw', flipped);
+      }
+      document.querySelectorAll('[data-flip="ai"]').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          setFlipped(true);
+        });
+      });
+      document.querySelectorAll('[data-flip="back"]').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          setFlipped(false);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
